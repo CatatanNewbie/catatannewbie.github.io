@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatatanNewbie | CyberSec & Bug Hunter</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #00FF91;
+      --primary-hover: #00e675;
+      --secondary-color: #6c63ff;
+      --accent-color: #ff6b6b;
+      --dark-bg: #0a0c10;
+      --card-bg: #12151c;
+      --card-bg-hover: #1a1f2c;
+      --text-color: #eaeaea;
+      --heading-color: #58a6ff;
+      --shadow-color: rgba(0,255,145,0.2);
+      --border-color: rgba(255,255,255,0.05);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    code, pre, .tool-name, .command-text {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .container {
+      margin-top: 80px;
+      padding-bottom: 50px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(10, 12, 16, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 255, 145, 0.1);
+      padding: 15px 0;
+      transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--primary-color) !important;
+      font-size: 1.4rem;
+      position: relative;
+    }
+
+    .navbar-brand::after {
+      content: '_';
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .nav-link {
+      color: var(--text-color) !important;
+      margin: 0 12px;
+      position: relative;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0,255,145,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .particles-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary-color);
+      opacity: 0.3;
+      animation: float-particle 12s infinite ease-in-out;
+    }
+
+    @keyframes float-particle {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-20px) translateX(10px);
+      }
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--heading-color);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1::before {
+      content: '<';
+      position: absolute;
+      left: -30px;
+      color: var(--primary-color);
+      opacity: 0.5;
+    }
+
+    .hero h1::after {
+      content: '/>';
+      position: absolute;
+      right: -40px;
+      color: var(--primary-color);
+      opacity: 0.5;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .typewriter {
+      font-family: 'JetBrains Mono', monospace;
+      border-right: 3px solid var(--primary-color);
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 0 auto;
+      letter-spacing: 0.15em;
+      animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary-color) }
+    }
+
+    .command-prompt {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      position: relative;
+      text-align: left;
+      border: 1px solid var(--border-color);
+    }
+
+    .command-prompt::before {
+      content: '$ ';
+      color: var(--primary-color);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .command-text {
+      display: inline;
+      color: var(--text-color);
+    }
+
+    /* Hero Buttons */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+
+    /* Section Styling */
+    .section {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 50px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background-color: var(--primary-color);
+      transition: height 0.5s ease;
+    }
+
+    .section:hover::before {
+      height: 100%;
+    }
+
+    .section:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .section h2 {
+      color: var(--heading-color);
+      font-weight: 700;
+      margin-bottom: 40px;
+      display: inline-block;
+      position: relative;
+      font-size: 2.2rem;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--primary-color);
+    }
+
+    .tool-card {
+      background-color: var(--card-bg-hover);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+    }
+
+    .tool-card:hover {
+      background-color: var(--accent-color);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tool-card h3 {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+
+    .tool-card p {
+      color: var(--text-color);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* Footer Styling */
+    footer {
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 1200px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    font-size: 14px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .nav-link {
+    font-size: 14px;
+  }
+}
+ .icon-blue {
+    color: #00bfff; /* Biru cerah */
+    transition: 0.3s;
+  }
+  .icon-blue:hover {
+    color: #0077ff; /* Biru lebih gelap saat hover */
+    transform: scale(1.1);
+  }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark border-body " data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Security77</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tools">Project</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </div>
+    </div>
+  </div>
+</nav>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="particles-background">
+      <!-- Particles will go here dynamically using JS -->
+    </div>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Exsploitasi & Bug Hunter</h1>
+      <p class="typewriter">Menjelajahi Keamanan Siber, OSINT, dan alat AI</p>
+      <div class="hero-buttons">
+        <a href="https://www.youtube.com/@catatannewbie" class="btn btn-primary">Youtube</a>
+        <a href="https://saweria.co/Security77" class="btn btn-outline-light">Beri saya segelas kopi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>Halo! Aku security77.Sehari-hari aku hidup bersama laptopku, menyatu dengan terminal hitam, penuh kode dan eksploit. Aku adalah seorang Security Researcher, Bug Hunter, dan Pengembang Tools OSINT & AI Hacking.Komputer bukan sekadar alat buatku, tapi dunia tempat aku berekspresi. Dari pagi sampai malam, aku berkutat dengan Linux — tepatnya Kali Linux Rolling, dengan WM andalanku Sway di atas Hyprland. CPU AMD, GPU Radeon, RAM 16GB — sudah seperti sahabat yang selalu menemaniku.</p>
+    <p>Hari-hariku diisi dengan:</p>
+
+      <p>🔍 Exploit CVE terbaru, SQL Laravel RCE </p>
+      <p>🤖 Ngoding AI Assistant (seperti Clara dan Chika) yang bisa bantu OSINT, voice command, hingga chat mode online/offline.</p>
+      <p>🛰️ Pemantauan Wi-Fi, scanning CCTV, bruteforce, metadata tracking, dan eksplorasi target pemerintah untuk celah keamanan (secara etis, tentu saja).</p>
+
+    <p>Aku juga suka menyendiri di terminal, membuat tools OSINT hybrid yang bisa cari data lewat dump offline dan API online. Tujuanku sederhana: mempermudah kerja seorang hacker etis, peneliti keamanan, dan investigator OSINT..</p>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="section" data-aos="fade-up">
+    <h2>My Project</h2>
+    <div class="tool-card">
+      <h3>OSINT Tool</h3>
+      <p>Saya dan Asisten AI saya, Clara, berkolaborasi membuat tools untuk melacak informasi dari foto lewat metadata (Exif).</p>
+      <p>Dengan tools ini, kami bisa:</p>
+      <p>🔍 Melihat lokasi GPS tempat foto diambil</p>
+      <p>📱 Mengetahui tipe HP/kamera yang digunakan</p>
+      <p>🗺️ Mengubah koordinat jadi alamat lengkap (reverse geolocation)</p>
+      <p>Tools ini sangat berguna untuk OSINT, investigasi digital, dan keamanan data.</p>
+
+
+    </div>
+    <div class="tool-card">
+      <h3>Video not publish</h3>
+      <p>Beberapa video edukasi saya tidak bisa diunggah ke akun pribadi karena terbentur pedoman komunitas.
+      Melalui website ini, saya ingin membagikan konten edukatif tentang:</p>
+      <p>🔓 Bagaimana hacker mencari target</p>
+      <p>🛡️ Celah keamanan di sistem pemerintah</p>
+      <p>Semua disajikan untuk tujuan pendidikan dan kesadaran keamanan digital, bukan untuk disalahgunakan.</p>
+    </div>
+  </section>
+
+  <!--My video-->
+  <section id="video" class="section" data-aos="fade-up">
+  <h2 class="text-center mb-4">Video</h2>
+  <div class="container">
+    <div class="row justify-content-center">
+      
+      <!-- Card 1 -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
+        <div class="card p-2" style="width: 560px;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/z-nvd6sw5HA?si=iiBE_Zitdaz01LC4" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
+        <div class="card p-2" style="width: 560px;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/2VkGWKgCyPg?si=5-miCvk6inz4r-Yo" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center">
+        <div class="card p-2" style="width: 560px;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/g8AXZ550ZlM?si=PTL11AkoRSJA_VA2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Contact Section -->
+  <!-- Bagian Contact + Sosial Media -->
+<section id="contact" class="section text-center" data-aos="fade-up">
+  <h2>Contact Me</h2>
+  <section id="sosial-media" class="text-center mt-4">
+    <div class="d-flex justify-content-center gap-4 mt-3">
+      <a href="https://x.com/Security_Fake77" target="_blank" class="text-decoration-none">
+        <i class="fab fa-twitter fa-2x icon-blue"></i>
+      </a>
+      <a href="https://www.instagram.com/catatan_newbie77" target="_blank" class="text-decoration-none">
+        <i class="fab fa-instagram fa-2x icon-blue"></i>
+      </a>
+      <a href="https://www.threads.net/@catatan_newbie77" target="_blank" class="text-decoration-none">
+        <i class="fab fa-threads fa-2x icon-blue"></i>
+      </a>
+      <a href="mailto:catatannewbie556@gmail.com" class="text-decoration-none">
+        <i class="fas fa-envelope fa-2x icon-blue"></i>
+      </a>
+    </div>
+  </section>
+</section>
+<center>
+   <footer>
+      <p>&copy; 2025 Chika(AI) | <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Leet_31337_h4x0r.jpg/250px-Leet_31337_h4x0r.jpg">{Ind0nesia Cyber Securiy}</a></p>
+    </footer>
+</center>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "nama": "Sneaker SL57",
+    "harga_asli": 250000,
+    "harga_diskon": 180000,
+    "gambar": "https://app.halodropship.com/assets/product/2025/11/10/whoppy-sl70-sepatu-sneakers-pria-import-free-box-foto.jpg",
+    "gambar_lain": ["images/p1_2.jpg", "images/p1_3.jpg"],
+    "kategori": "Sepatu",
+    "stok": 12,
+    "rating": 4.7,
+    "rating_count": 123,
+    "deskripsi": "Sneaker SL57 adalah sepatu kasual premium dengan bahan breathable mesh dan sole empuk yang nyaman dipakai harian.",
+    "varian": {
+      "ukuran": ["39", "40", "41", "42"],
+      "warna": ["Hitam", "Putih"],
+      "lainnya": ["Original", "Premium Box"]
+    },
+    "crypto_url": "https://crypto.com/pay",
+    "shopee_url": "https://shopee.co.id",
+    "tokopedia_url": "https://tokopedia.com"
+  },
+  {
+    "id": 2,
+    "nama": "Kaos Polos Oversize",
+    "harga_asli": 120000,
+    "harga_diskon": 95000,
+    "gambar": "images/p2.jpg",
+    "gambar_lain": [],
+    "kategori": "Fashion",
+    "stok": 30,
+    "rating": 4.5,
+    "rating_count": 87,
+    "deskripsi": "Kaos oversize berbahan cotton combed 30s, adem, lembut, dan tidak mudah melar. Model streetwear kekinian.",
+    "varian": {
+      "ukuran": ["S", "M", "L", "XL"]
+    },
+    "crypto_url": "#",
+    "shopee_url": "#",
+    "tokopedia_url": "#"
+  },
+  {
+    "id": 3,
+    "nama": "Topi Retro",
+    "harga_asli": 80000,
+    "harga_diskon": 60000,
+    "gambar": "images/p3.jpg",
+    "gambar_lain": [],
+    "kategori": "Aksesoris",
+    "stok": 0,
+    "rating": 4.2,
+    "rating_count": 34,
+    "deskripsi": "Topi retro gaya 90-an dengan strap belakang adjustable. Cocok untuk streetwear & casual outfit.",
+    "varian": {},
+    "crypto_url": "#",
+    "shopee_url": "#",
+    "tokopedia_url": "#"
+  }
+]
